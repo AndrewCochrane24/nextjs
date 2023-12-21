@@ -1,19 +1,19 @@
 # Get NPM packages
-FROM alpine-node-18.17.0-first AS dependencies
+FROM alpine-node-18.17.0-npm AS dependencies
 RUN apk add --no-cache libc6-compat
 WORKDIR /app
 COPY package.json package-lock.json ./
 RUN npm ci --only=production
 
 # Rebuild the source code only when needed
-FROM alpine-node-18.17.0-first AS builder
+FROM alpine-node-18.17.0-npm AS builder
 WORKDIR /app
 COPY . .
 COPY --from=dependencies /app/node_modules ./node_modules
 RUN npm run build
 
 # Production image, copy all the files and run next
-FROM alpine-node-18.17.0-first AS runner
+FROM alpine-node-18.17.0-npm AS runner
 WORKDIR /app
 
 ENV NODE_ENV production
