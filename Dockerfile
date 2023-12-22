@@ -3,7 +3,8 @@
 
 # Line below tags the image and points to the Google Cloud Artifact Registry
 # docker tag SOURCE-IMAGE LOCATION    -docker.pkg.dev/PROJECT-ID          /REPOSITORY/IMAGE:TAG
-# docker tag 019a0b88fbbb europe-west2-docker.pkg.dev/nextjs-deployment-test/andrewcochrane24/nextjs-dashboard:init
+# the url for pusing to the repo is best copied from the repository page itself
+# docker tag 019a0b88fbbb europe-west2-docker.pkg.dev/nextjs-deployment-test-408815/nextjs-dasboard-repo/nextjs-dashboard:init
 
 # To push
 # docker push LOCATION-docker.pkg.dev/PROJECT-ID/REPOSITORY/IMAGE:TAG
@@ -11,21 +12,21 @@
 
 
 # Get NPM packages
-FROM andrewcochrane24/alpine-node-18.17.0-npm AS dependencies
+FROM alpine-node-18.17.0-npm AS dependencies
 RUN apk add --no-cache libc6-compat
 WORKDIR /app
 COPY package.json package-lock.json ./
 RUN npm ci --only=production
 
 # Rebuild the source code only when needed
-FROM andrewcochrane24/alpine-node-18.17.0-npm AS builder
+FROM alpine-node-18.17.0-npm AS builder
 WORKDIR /app
 COPY . .
 COPY --from=dependencies /app/node_modules ./node_modules
 RUN npm run build
 
 # Production image, copy all the files and run next
-FROM andrewcochrane24/alpine-node-18.17.0-npm AS runner
+FROM alpine-node-18.17.0-npm AS runner
 WORKDIR /app
 
 ENV NODE_ENV production
