@@ -1,3 +1,15 @@
+
+# Enable Artifact Registry API for the project https://console.developers.google.com/apis/api/artifactregistry.googleapis.com/overview?project=1064159726085
+
+# Line below tags the image and points to the Google Cloud Artifact Registry
+# docker tag SOURCE-IMAGE LOCATION    -docker.pkg.dev/PROJECT-ID          /REPOSITORY/IMAGE:TAG
+# docker tag 019a0b88fbbb europe-west2-docker.pkg.dev/nextjs-deployment-test/andrewcochrane24/nextjs-dashboard:init
+
+# To push
+# docker push LOCATION-docker.pkg.dev/PROJECT-ID/REPOSITORY/IMAGE:TAG
+
+
+
 # Get NPM packages
 FROM andrewcochrane24/alpine-node-18.17.0-npm AS dependencies
 RUN apk add --no-cache libc6-compat
