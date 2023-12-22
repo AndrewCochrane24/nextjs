@@ -4,12 +4,12 @@
 # Line below tags the image and points to the Google Cloud Artifact Registry
 # docker tag SOURCE-IMAGE LOCATION    -docker.pkg.dev/PROJECT-ID          /REPOSITORY/IMAGE:TAG
 # the url for pusing to the repo is best copied from the repository page itself
-# docker tag 019a0b88fbbb europe-west2-docker.pkg.dev/nextjs-deployment-test-408815/nextjs-dasboard-repo/nextjs-dashboard:init
+# docker tag 019a0b88fbbb europe-west2-docker.pkg.dev/nextjs-deployment-test-408815/nextjs-dashboard-repo/nextjs-dashboard:init
 
 # To push
 # docker push LOCATION-docker.pkg.dev/PROJECT-ID/REPOSITORY/IMAGE:TAG
-
-
+# docker push europe-west2-docker.pkg.dev/nextjs-deployment-test-408815/nextjs-dasboard-repo/nextjs-dashboard:updated
+#             europe-west2-docker.pkg.dev/nextjs-deployment-test-408815/nextjs-dashboard-repo/
 
 # Get NPM packages
 FROM andrewcochrane24/alpine-node18-npm AS dependencies
